@@ -88,6 +88,7 @@ export default async function createCompiler (dir, { dev = false, quiet = false,
     }),
     // next.js DLL
     new AutoDllPlugin({
+      debug: true,
       context: join(__dirname, '../../..'),
       inject: true,
       filename: '[name].dll.js',
