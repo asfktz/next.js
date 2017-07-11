@@ -86,15 +86,32 @@ export default async function createCompiler (dir, { dev = false, quiet = false,
         }
       }
     }),
+    // next.js DLL
     new AutoDllPlugin({
+      context: join(__dirname, '../../..'),
       inject: true,
-      context: console.dir(),
-      filename: '[name].js',
+      filename: '[name].dll.js',
       path: './',
       entry: {
-        vendor: [
+        next: [
           'react',
           'react-dom'
+        ]
+      }
+    }),
+    // User DLL
+    new AutoDllPlugin({
+      context: dir,
+      inject: true,
+      filename: '[name].dll.js',
+      path: './',
+      entry: {
+        user: [
+          // For simplicity sake, I hardcoded the user's dependencies for the `with-redux` example
+          // A better approach will be to read it from the user's package.json
+          'react-redux',
+          'redux',
+          'redux-thunk'
         ]
       }
     }),

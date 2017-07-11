@@ -143,11 +143,19 @@ export default class Server {
         await this.serveStatic(req, res, p)
       },
 
-      '/_next/:hash/vendor.js': async (req, res, params) => {
+      '/_next/:hash/next.dll.js': async (req, res, params) => {
         if (!this.dev) return this.send404(res)
 
-        this.handleBuildHash('vendor.js', params.hash, res)
-        const p = join(this.dir, `${this.dist}/vendor.js`)
+        this.handleBuildHash('next.dll.js', params.hash, res)
+        const p = join(this.dir, `${this.dist}/next.dll.js`)
+        await this.serveStatic(req, res, p)
+      },
+
+      '/_next/:hash/user.dll.js': async (req, res, params) => {
+        if (!this.dev) return this.send404(res)
+
+        this.handleBuildHash('user.dll.js', params.hash, res)
+        const p = join(this.dir, `${this.dist}/user.dll.js`)
         await this.serveStatic(req, res, p)
       },
 

@@ -138,7 +138,8 @@ export class NextScript extends Component {
       return [
         this.getChunkScript('manifest.js'),
         this.getChunkScript('commons.js'),
-        this.getChunkScript('vendor.js'),
+        this.getChunkScript('next.dll.js'),
+        this.getChunkScript('user.dll.js'),
         this.getChunkScript('main.js')
       ]
     }
